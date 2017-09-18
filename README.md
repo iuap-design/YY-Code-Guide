@@ -10,7 +10,7 @@
 
 ## 细则
 
-- [x] [命名规则](./命名规则.md)
+- [x] [命名规则和目录规范](./命名规则.md)
 - [x] [HTML 编码规范](./HTML.md)
 - [x] [CSS 编码规范](./CSS.md)
 - [x] [JavaScript 编码规范](./JavaScript.md)
