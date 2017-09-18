@@ -755,7 +755,7 @@
     var totalScore = this.reviewScore + ' total score';
     ```
 
-    -  对数字使用 `parseInt` 并且总是带上类型转换的基数.
+-  对数字使用 `parseInt` 并且总是带上类型转换的基数.
 
    ```javascript
    var inputValue = '4';
@@ -787,60 +787,60 @@
    var val = inputValue >> 0;
    ```
 
-    - 布尔值:
+- 布尔值:
 
-    ```javascript
-    var age = 0;
+```javascript
+var age = 0;
 
-    // bad
-    var hasAge = new Boolean(age);
+// bad
+var hasAge = new Boolean(age);
 
-    // good
-    var hasAge = Boolean(age);
+// good
+var hasAge = Boolean(age);
 
-    // good
-    var hasAge = !!age;
-    ```
+// good
+var hasAge = !!age;
+```
 
 
 
 ## <a name='naming-conventions'>命名约定</a>
 
--   避免单个字符名，让你的变量名有描述意义。
+- 避免单个字符名，让你的变量名有描述意义。
 
-    ```javascript
-    // bad
-    function q() {
-      // ...stuff...
-    }
+```javascript
+// bad
+function q() {
+  // ...stuff...
+}
 
-    // good
-    function query() {
-      // ..stuff..
-    }
-    ```
+// good
+function query() {
+  // ..stuff..
+}
+```
 
--   当命名对象、函数和实例时使用驼峰命名规则
+- 当命名对象、函数和实例时使用驼峰命名规则
 
-    ```javascript
-    // bad
-    var OBJEcttsssss = {};
-    var this_is_my_object = {};
-    var this-is-my-object = {};
-    function c() {};
-    var u = new user({
-      name: 'Bob Parr'
-    });
+```javascript
+// bad
+var OBJEcttsssss = {};
+var this_is_my_object = {};
+var this-is-my-object = {};
+function c() {};
+var u = new user({
+  name: 'Bob Parr'
+});
 
-    // good
-    var thisIsMyObject = {};
-    function thisIsMyFunction() {};
-    var user = new User({
-      name: 'Bob Parr'
-    });
-    ```
+// good
+var thisIsMyObject = {};
+function thisIsMyFunction() {};
+var user = new User({
+  name: 'Bob Parr'
+});
+```
 
-    - 当命名构造函数或类时使用驼峰式大写
+- 当命名构造函数或类时使用驼峰式大写
 
       ```javascript
       // bad
@@ -873,7 +873,7 @@
       this._firstName = 'Panda';
       ```
 
-    - 当保存对 `this` 的引用时使用 `_this`.
+- 当保存对 `this` 的引用时使用 `_this`.
 
       ```javascript
       // bad
@@ -905,54 +905,54 @@
 
 ## <a name='accessors'>存取器</a>
 
--   属性的存取器函数不是必需的
--   如果你确实有存取器函数的话使用getVal() 和 setVal('hello')
+- 属性的存取器函数不是必需的
+- 如果你确实有存取器函数的话使用getVal() 和 setVal('hello')
 
-    ```javascript
-    // bad
-    dragon.age();
+```javascript
+// bad
+dragon.age();
 
-    // good
-    dragon.getAge();
+// good
+dragon.getAge();
 
-    // bad
-    dragon.age(25);
+// bad
+dragon.age(25);
 
-    // good
-    dragon.setAge(25);
-    ```
+// good
+dragon.setAge(25);
+```
 
-    - 如果属性是布尔值，使用isVal() 或 hasVal()
+- 如果属性是布尔值，使用isVal() 或 hasVal()
 
-    ```javascript
-    // bad
-    if (!dragon.age()) {
-      return false;
-    }
+```javascript
+// bad
+if (!dragon.age()) {
+  return false;
+}
 
-    // good
-    if (!dragon.hasAge()) {
-      return false;
-    }
-    ```
+// good
+if (!dragon.hasAge()) {
+  return false;
+}
+```
 
-    - 可以创建get()和set()函数，但是要保持一致
+- 可以创建get()和set()函数，但是要保持一致
 
-    ```javascript
-    function Jedi(options) {
-      options || (options = {});
-      var lightsaber = options.lightsaber || 'blue';
-      this.set('lightsaber', lightsaber);
-    }
+```javascript
+function Jedi(options) {
+  options || (options = {});
+  var lightsaber = options.lightsaber || 'blue';
+  this.set('lightsaber', lightsaber);
+}
 
-    Jedi.prototype.set = function(key, val) {
-      this[key] = val;
-    };
+Jedi.prototype.set = function(key, val) {
+  this[key] = val;
+};
 
-    Jedi.prototype.get = function(key) {
-      return this[key];
-    };
-    ```
+Jedi.prototype.get = function(key) {
+  return this[key];
+};
+```
 
 
 
@@ -1074,83 +1074,83 @@
 
 -   模块应该以 `!` 开始，这保证了如果一个有问题的模块忘记包含最后的分号在合并后不会出现错误
 -   这个文件应该以驼峰命名，并在同名文件夹下，同时导出的时候名字一致
-    - 加入一个名为noConflict()的方法来设置导出的模块为之前的版本并返回它
-    - 总是在模块顶部声明 `'use strict';`
+- 加入一个名为noConflict()的方法来设置导出的模块为之前的版本并返回它
+- 总是在模块顶部声明 `'use strict';`
 
-    ```javascript
-    // fancyInput/fancyInput.js
+```javascript
+// fancyInput/fancyInput.js
 
-    !function(global) {
-      'use strict';
+!function(global) {
+  'use strict';
 
-      var previousFancyInput = global.FancyInput;
+  var previousFancyInput = global.FancyInput;
 
-      function FancyInput(options) {
-        this.options = options || {};
-      }
+  function FancyInput(options) {
+    this.options = options || {};
+  }
 
-      FancyInput.noConflict = function noConflict() {
-        global.FancyInput = previousFancyInput;
-        return FancyInput;
-      };
+  FancyInput.noConflict = function noConflict() {
+    global.FancyInput = previousFancyInput;
+    return FancyInput;
+  };
 
-      global.FancyInput = FancyInput;
-    }(this);
-    ```
+  global.FancyInput = FancyInput;
+}(this);
+```
 
 
 
 ## <a name='jquery'>jQuery</a>
 
--   缓存jQuery查询
+- 缓存jQuery查询
 
-    ```javascript
-    // bad
-    function setSidebar() {
-      $('.sidebar').hide();
+```javascript
+// bad
+function setSidebar() {
+  $('.sidebar').hide();
 
-      // ...stuff...
+  // ...stuff...
 
-      $('.sidebar').css({
-        'background-color': 'pink'
-      });
-    }
+  $('.sidebar').css({
+    'background-color': 'pink'
+  });
+}
 
-    // good
-    function setSidebar() {
-      var $sidebar = $('.sidebar');
-      $sidebar.hide();
+// good
+function setSidebar() {
+  var $sidebar = $('.sidebar');
+  $sidebar.hide();
 
-      // ...stuff...
+  // ...stuff...
 
-      $sidebar.css({
-        'background-color': 'pink'
-      });
-    }
-    ```
+  $sidebar.css({
+    'background-color': 'pink'
+  });
+}
+```
 
--   对DOM查询使用级联的 `$('.sidebar ul')` 或 `$('.sidebar ul')`
-    - 对有作用域的jQuery对象查询使用 `find`
+- 对DOM查询使用级联的 `$('.sidebar ul')` 或 `$('.sidebar ul')`
+- 对有作用域的jQuery对象查询使用 `find`
 
-    ```javascript
-    // bad
-    $('.sidebar', 'ul').hide();
+```javascript
+// bad
+$('.sidebar', 'ul').hide();
 
-    // bad
-    $('.sidebar').find('ul').hide();
+// bad
+$('.sidebar').find('ul').hide();
 
-    // good
-    $('.sidebar ul').hide();
+// good
+$('.sidebar ul').hide();
 
-    // good
-    $('.sidebar > ul').hide();
+// good
+$('.sidebar > ul').hide();
 
-    // good (slower)
-    $sidebar.find('ul');
+// good (slower)
+$sidebar.find('ul');
 
-    // good (faster)
-    $($sidebar[0]).find('ul');
-    ```
+// good (faster)
+$($sidebar[0]).find('ul');
+```
 
 
 
@@ -1159,14 +1159,12 @@
 - 参考Kangax的 ES5 [compatibility table](http://kangax.github.com/es5-compat-table/)
 
 
-
-
 ## <a name='performance'>性能</a>
 
--   [On Layout & Web Performance](http://kellegous.com/j/2013/01/26/layout-performance/)
--   [String vs Array Concat](http://jsperf.com/string-vs-array-concat/2)
-    - [Try/Catch Cost In a Loop](http://jsperf.com/try-catch-in-loop-cost)
-    - [Bang Function](http://jsperf.com/bang-function)
-    - [jQuery Find vs Context, Selector](http://jsperf.com/jquery-find-vs-context-sel/13)
-    - [innerHTML vs textContent for script text](http://jsperf.com/innerhtml-vs-textcontent-for-script-text)
-    - [Long String Concatenation](http://jsperf.com/ya-string-concat)
+- [On Layout & Web Performance](http://kellegous.com/j/2013/01/26/layout-performance/)
+- [String vs Array Concat](http://jsperf.com/string-vs-array-concat/2)
+- [Try/Catch Cost In a Loop](http://jsperf.com/try-catch-in-loop-cost)
+- [Bang Function](http://jsperf.com/bang-function)
+- [jQuery Find vs Context, Selector](http://jsperf.com/jquery-find-vs-context-sel/13)
+- [innerHTML vs textContent for script text](http://jsperf.com/innerhtml-vs-textcontent-for-script-text)
+- [Long String Concatenation](http://jsperf.com/ya-string-concat)
