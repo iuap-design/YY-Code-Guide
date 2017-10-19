@@ -1,10 +1,7 @@
 # react组件开发规范
 
-要求编码规范，接口定义规范，组件结构自由给予用户充分定制能力。
-
 ## 文件命名
 - 每一个文件只包含一个组件，每一个基本组件只包含单一功能
-- src目录下，如果文件返回是一个类，文件名首字母大写
 - 文件js模块统一使用js后缀名
 
 ## js规范
@@ -13,24 +10,32 @@
 
 ### 格式
 
-- 标签自闭合
+- 无内容标签自闭合
 
 ```
 //bad
 
 <Button></Button>
+<span></span>
 
 //good
 <Button />
+<span />
 ```
 
-- 自闭合换行
+- 属性换行
 ```
 //bad
-
+ <Button color="primary" onClick={this.handleClick}> 提交 </Button>
  <Button color="primary" />
 
 //good
+
+ <Button
+    color="primary"
+    onClick={this.handleClick}>
+ 提交
+ </Button>
 
 <Button
     color="primary"
@@ -95,6 +100,8 @@ function Button ({ text }) {
 ```
 
 - 对于只有简单数据类型的`props`和`state`的组件，建议使用`PureComponent`来声明组件
+
+`PureComponent`是在组件内默认再`shouldComponentUpdate`方法内进行的`state`和`props`的浅比较。来对组件进行一定的性能优化。
 
 ```
 
@@ -169,178 +176,9 @@ Button.defaultProps = defaultProps;
 
 ```
 
-- 不使用displayName命名
+### 组件生命周期函数
 
-displayName属性用于组件调试时输出显示，JSX自动设置该值，可以理解为调试时显示的组件名。
-
-```
-// bad
-export default React.createClass({
-  displayName: 'Button',
-  // stuff goes here
-});
-
-// good
-export default class Button extends React.Component {
-}
-```
-
-
-### 属性定义
-
-- 定义props避开react关键字及保留字，常用的props及state定义可参考下表
-
-- `props`和`state`使用驼峰命名。
-
-- 不直接修改`state`
-
-```
-//bad
-
-class Button extends React.Component{
-    constructor(props){
-       super(props);
-       this.state = {
-            disabled: false
-       }
-    }
-    handleClick = () => {
-        this.state.disabled = true;
-        this.setState({
-           disabled:  this.state.disabled
-        })
-
-    }
-
-    render() {
-        return (
-            <Button
-                disabled={this.state.disabled}>
-            { this.props.text }
-            </Button>
-        )
-    }
-}
-
-//good
-
-class Button extends React.Component{
-    constructor(props){
-       super(props);
-       this.state = {
-            disabled: false
-       }
-    }
-    handleClick = () => {
-        let disabled = ture;
-        this.setState({
-           disabled
-        })
-
-    }
-
-    render() {
-        return (
-            <Button
-                disabled={this.state.disabled}>
-            { this.props.text }
-            </Button>
-        )
-    }
-}
-
-```
-
-- 自定义HTML属性使用data-
-
-```
-class Button extends React.Component{
-
-    render() {
-        return (
-            <Button
-                data-name="submit-button">
-            { this.props.text }
-            </Button>
-        )
-    }
-}
-
-
-```
-
-- 可以使用es6的这种`...props`语法获取剩下所有属性,但是如果没有必要，尽量不要使用
-
-```
-class Button extends React.Component{
-
-    render() {
-    let {onClick, disabled, ...props} = this.props;
-        return (
-            <Button
-                { ...props }>
-            { this.props.text }
-            </Button>
-        )
-    }
-}
-
-```
-
-### ref
-
-- 通过`ref`可以取到组件原生dom对象。使用传入函数function方式来定义`ref`，不使用字符串定义`ref`
-
-```
-//bad
-
-
-class Button extends React.Component{
-    constructor(props){
-            super(props);
-    }
-    componentDidMount() {
-        this.refs.buttonRef.focus();
-    }
-
-    render() {
-        return (
-            <Button
-                ref="buttonRef">
-            { this.props.text }
-            </Button>
-        )
-    }
-}
-
-//good
-
-class Button extends React.Component{
-    constructor(props){
-        super(props);
-        this.buttonRef = {};
-    }
-    componentDidMount() {
-        this.buttonRef.focus();
-    }
-
-    render() {
-        return (
-            <Button
-                ref={(el) => this.buttonRef = el;}>
-            { this.props.text }
-            </Button>
-        )
-    }
-}
-
-```
-
-- 尽量少或者不使用ref获取和操作dom节点，使用state和prop进行控制dom
-
-### 组件声明周期函数
-
-- 组件方法定义顺序
+- 组件生命周期方法定义顺序
     - constructor
     - getChildContext
     - componentWillMount
@@ -429,7 +267,8 @@ class Button extends React.Component{
     }
     render() {
         return (
-            <Button onClick={this.handleClick.bind(this)}>
+            <Button
+                onClick={this.handleClick.bind(this)}>
             { this.state.data }
             </Button>
         )
@@ -445,7 +284,8 @@ class Button extends React.Component{
     }
     render() {
         return (
-            <Button onClick={this.handleClick}>
+            <Button
+                onClick={this.handleClick}>
             { this.state.data }
             </Button>
         )
@@ -453,10 +293,229 @@ class Button extends React.Component{
 }
 ```
 
+### 属性定义
+
+- 定义props避开react关键字及保留字，常用的props及state定义可参考下表
+
+- `props`和`state`使用驼峰命名。
+
+- 不直接修改`state`
+
+```
+//bad
+
+class Button extends React.Component{
+    constructor(props){
+       super(props);
+       this.state = {
+            disabled: false
+       }
+    }
+    handleClick = () => {
+        this.state.disabled = true;
+        this.setState({
+           disabled:  this.state.disabled
+        })
+
+    }
+
+    render() {
+        return (
+            <Button
+                disabled={this.state.disabled}>
+            { this.props.text }
+            </Button>
+        )
+    }
+}
+
+//good
+
+class Button extends React.Component{
+    constructor(props){
+       super(props);
+       this.state = {
+            disabled: false
+       }
+    }
+    handleClick = () => {
+        let disabled = ture;
+        this.setState({
+           disabled
+        })
+
+    }
+
+    render() {
+        return (
+            <Button
+                disabled={this.state.disabled}>
+            { this.props.text }
+            </Button>
+        )
+    }
+}
+
+```
+
+- 自定义HTML属性使用data-
+
+```
+class Button extends React.Component{
+
+    render() {
+        return (
+            <button
+                data-name="submit-button">
+            { this.props.text }
+            </button>
+        )
+    }
+}
+
+
+```
+
+- 可以使用es6的这种`...props`语法获取剩下所有属性,但是如果没有必要，尽量不要使用
+
+```
+class Button extends React.Component{
+
+    render() {
+    let {onClick, disabled, ...props} = this.props;
+        return (
+            <button
+                { ...props }>
+            { this.props.text }
+            </button>
+        )
+    }
+}
+
+```
+
+### ref
+
+- 通过`ref`可以取到组件原生dom对象。使用传入函数function方式来定义`ref`，不使用字符串定义`ref`
+
+```
+//bad
+
+
+class Button extends React.Component{
+    constructor(props){
+            super(props);
+    }
+    componentDidMount() {
+        this.refs.buttonRef.focus();
+    }
+
+    render() {
+        return (
+            <button
+                ref="buttonRef">
+            { this.props.text }
+            </button>
+        )
+    }
+}
+
+//good
+
+class Button extends React.Component{
+    constructor(props){
+        super(props);
+        this.buttonRef = {};
+    }
+    componentDidMount() {
+        this.buttonRef.focus();
+    }
+
+    render() {
+        return (
+            <button
+                ref={(el) => this.buttonRef = el;}>
+            { this.props.text }
+            </button>
+        )
+    }
+}
+
+```
+
+- 尽量少或者不使用ref获取和操作dom节点，使用state和prop进行控制dom
+
+### key
+
+- 对于组件中的key优化，起到最大化重用dom
+
+使用一个不会改变的值作为组件的key，在列表发生变化的时候，这个dom便不会重新渲染，而是重用。
+
+```
+//bad
+
+this.state.dataAry.map((item, index) => {
+return <span key={index} />
+})
+
+//good
+
+this.state.dataAry.map((item, index) => {
+return <span key={item.id} />
+})
+
+```
+
+### props 传值
+
+- 对props的传值写法
+
+```
+//bad
+<Button
+    data={{aa: 11}}
+    style={{color: '#f5f5f5'}}
+/>
+
+//bad
+
+<Button
+    onClick={ (e) => { console.log(e) }}
+/>
+
+//good
+const style = {
+    color: '#f5f5f5'
+}
+const data  = {
+    aa: 11
+}
+
+return (
+<Button
+    data={data}
+    style={style}
+/>
+)
+
+//good
+
+handleClick = (e) => {}
+
+<Button
+    onClick={ this.handleClick }
+/>
+
+```
+对于第一种写法，每次render传入的props data和color都是一个新的对象，所以每次都会重新render。优化方式是将要传入props的对象设置为常量，来优化组件渲染。
+
+
+
+
+
 ### Mixin
 
 - 使用es6后，不支持mixin，使用decorator进行扩展和高阶组件方式扩展。
-
 
 
 
@@ -509,7 +568,10 @@ class Button extends React.Component {
 
 	render () {
 		return (
-			// <div onClick={this.MyEvent}></div>
+			 <div
+			    onClick={this.MyEvent}>
+			    some text
+			 </div>
 		)
 	}
 }
