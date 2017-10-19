@@ -7,6 +7,7 @@
 ## js规范
 - 使用es6开发，尽量使用常用的ES6语法，[ES6语法参考](http://es6.ruanyifeng.com/)
 - 使用jsx语法
+- [组件设计原则](https://github.com/tinper-bee/react-components-docs/blob/master/%E7%BB%84%E4%BB%B6%E5%88%92%E5%88%86%E5%8E%9F%E5%88%99.md)
 
 ### 格式
 
