@@ -449,6 +449,12 @@ import 'bee-pagination/build/Pagination.css'
 import './index.less';
 ```
 
+## 13、【不强制执行】代码通透性
+
+- `=` 左右各保持一个空格；
+- `,` 后面保持一个空格；
+- `{}` 花括号体内左右两边各保持一个空格
+
 ## 最佳实践：标准组件定义
 
 ```
