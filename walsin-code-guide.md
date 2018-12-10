@@ -334,7 +334,7 @@ class Button extends React.Component{
 }
 ```
 
-## 10、使用箭头函数定义自定义的组件内方法
+## 10、默认采用箭头函数定义组件内的公共方法
 
 ```
 //bad
@@ -369,7 +369,7 @@ class Button extends React.Component{
 }
 ```
 
-## 11、不允许通过 this.state.xx = xx；来修改 state
+## 11、采用 `setState` 修改 `state`，不允许出现类似 `this.state.xx = xx；` 的代码
 
    
 ```
@@ -432,21 +432,21 @@ class Button extends React.Component{
 ```
 
 //组件 （1）
-	//①react组件   ② UI级组件
-	import React, {Component} from 'react';
-	import { Button, Message, Modal, Loading, getMarginStyle } from 'tinper-bee';
-	import Grid from 'bee-complex-grid';
-	import CommonModal from '../CommonModal';
-	import DeleteModal from "../DeleteModal";
-	
-	// 导入工具类（2）
-	import {connect, actions} from 'mirrorx';
-	import {deepClone, success, Error} from 'utils';
-	
-	// 导入样式 （3）
-	import 'bee-complex-grid/build/Grid.css';
-	import 'bee-pagination/build/Pagination.css'
-	import './index.less';
+//①react组件   ② UI级组件
+import React, {Component} from 'react';
+import { Button, Message, Modal, Loading, getMarginStyle } from 'tinper-bee';
+import Grid from 'bee-complex-grid';
+import CommonModal from '../CommonModal';
+import DeleteModal from "../DeleteModal";
+
+// 导入工具类（2）
+import {connect, actions} from 'mirrorx';
+import {deepClone, success, Error} from 'utils';
+
+// 导入样式 （3）
+import 'bee-complex-grid/build/Grid.css';
+import 'bee-pagination/build/Pagination.css'
+import './index.less';
 ```
 
 ## 最佳实践：标准组件定义
