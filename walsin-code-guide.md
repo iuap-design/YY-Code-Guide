@@ -10,12 +10,12 @@
 ## 1、命名规范
 
 * 文件夹命名：
-	* 业务目录：所有文件夹除组件文件夹外所有命名均为：全部采用小写方式， 以中划线分隔，如my-project-name
-	* 组件目录：采用大驼峰，每个英文单字首字母大写如 AccountModal
-* 组件命名：采用大驼峰，每个英文单字首字母大写如 AccountModal
+	* 业务目录（业务目录的定义和划分，需要说明）：所有文件夹除组件文件夹外所有命名均为：全部采用小写方式， 以中划线分隔，如 `my-project-name`
+	* 组件目录：采用大驼峰，每个英文单字首字母大写如 `AccountModal`
+* 组件名称命名：采用大驼峰，每个英文单字首字母大写如 `AccountModal`
 * 文件后缀命名：
-   ① 文件js模块统一使用.js后缀名
-   ② 样式文件统一采用.less后缀名
+   ① 文件js模块统一使用 `.js` 后缀名
+   ② 样式文件统一采用 `.less` 后缀名
 * 组件目录下的文件命名：组件文件默认命名为 `index.js`，组件样式文件默认命名为 `index.less`
 * `props` 和 `state` 使用小驼峰命名
 
@@ -72,21 +72,6 @@ function make(tag) {
 
 // good
 /**
-* make() returns a new element
-* based on the passed in tag name
-* @param <String> tag
-* @return <Element> element
-*/
-function make(tag) {
-    // ...stuff...
-    return element;
-}
-```
-
- 常用文档注释标签如下,可以按如下标签顺序防止标签
-
-```
-/**
    * Book类，代表一个书本.
    * @constructor
    * @description
@@ -94,7 +79,12 @@ function make(tag) {
    * @param {string} author - 书本的作者.
    * @returns {string|*}
    */
+function make(tag) {
+    // ...stuff...
+    return element;
+}
 ```
+
 
 * JSX 注释采用 `{/* ... */ }`
 
