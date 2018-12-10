@@ -173,7 +173,6 @@ class Panel extends Component{
 ```
 //bad
  <Button color="primary" onClick={this.handleClick}> 提交 </Button>
- <Button color="primary" />
 
 //good
  <Button
@@ -200,7 +199,7 @@ class Button extends React.Component{
     }
 }
 
-//bad
+//good
 const Button = ({ text }) => (
     <button>{ text }</button>
  )
@@ -228,7 +227,9 @@ class Button extends React.Component {
 
 ## 7、使用 ref 来获取组件 DOM
 
-通过ref可以取到组件原生dom对象。使用传入函数function方式来定义ref，**不使用字符串定义ref**。
+
+- 通过 `ref` 获取组件原生 `DOM` 对象。
+- 尽量不采用传入字符串的方式赋值 `ref`，需采用传入函数的方式来定义 `ref`。
 
 ```
 //bad
@@ -292,10 +293,9 @@ Button.propTypes = propTypes;
 
 
 
-## 9、组件生命周期方法定义顺序
+## 9、组件生命周期相关方法书写顺序
    
 - constructor
-- getChildContext
 - componentWillMount
 - componentDidMount
 - componentWillReceiveProps
@@ -303,7 +303,7 @@ Button.propTypes = propTypes;
 - componentWillUpdate
 - componentDidUpdate
 - componentWillUnmount
-- 在componentDidMount生命周期内获取初始数据
+
 
 ```
 class Button extends React.Component{
