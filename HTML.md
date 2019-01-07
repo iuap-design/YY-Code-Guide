@@ -117,8 +117,8 @@ HTML5 规范链接：
 
 属性应该按照特定的顺序出现以保证易读性：
 
-- class
 - id
+- class
 - name
 - data-*
 - src, for, type, href, value , max-length, max, min, pattern
