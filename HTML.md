@@ -126,13 +126,10 @@ HTML5 规范链接：
 - aria-*, role
 - required, readonly, disabled
 
-class是为高可复用组件设计的，所以应处在第一位；
 
-id更加具体且应该尽量少使用，所以将它放在第二位。
-
-
+示例代码如下：
 ```html
-<a class="..." id="..." data-modal="toggle" href="#">Example link</a>
+<a id="..." class="..." data-modal="toggle" href="#">Example link</a>
 
 <input class="form-control" type="text">
 
